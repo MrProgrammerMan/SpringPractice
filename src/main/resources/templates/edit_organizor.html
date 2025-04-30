@@ -7,11 +7,11 @@
 </head>
 <body>
     <h1>Edit Organizor</h1>
-
-    <form th:action="@{'/organizors/' + ${organizor.id} + '/update'}" method="post">
+    <form id="editOrganizorForm" method="POST" th:action="@{/organizors/{id}/update(id=${organizor.id})}">
+        <input type="hidden" name="_method" value="PUT" />
         <div>
             <label for="id">ID:</label>
-            <input type="text" id="id" th:value="${organizor.id}" readonly />
+            <input type="text" name="id" id="id" th:value="${organizor.id}" readonly />
         </div>
 
         <div>

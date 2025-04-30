@@ -5,6 +5,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import no.oslomet.klatrestudy.entities.Organizor;
 import no.oslomet.klatrestudy.services.OrganizorService;
@@ -42,5 +44,11 @@ public class OrganizorController {
         Organizor organizor = organizorService.getOrganizorById(id).orElse(null);
         model.addAttribute("organizor", organizor);
         return "edit_organizor"; // This should return the name of the view (e.g., "edit_organizor.html")
+    }
+
+    @PutMapping("/organizors/{id}/update")
+    public String updateOrganizor(@PathVariable Long id, Organizor organizor) {
+        organizorService.updateOrganizor(id, organizor);
+        return "redirect:/organizors";
     }
 }
