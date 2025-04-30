@@ -36,4 +36,11 @@ public class OrganizorController {
         organizorService.deleteOrganizor(id);
         return "redirect:/organizors";
     }
+
+    @GetMapping("/organizors/{id}/edit")
+    public String editOrganizor(@PathVariable Long id, Model model) {
+        Organizor organizor = organizorService.getOrganizorById(id).orElse(null);
+        model.addAttribute("organizor", organizor);
+        return "edit_organizor"; // This should return the name of the view (e.g., "edit_organizor.html")
+    }
 }

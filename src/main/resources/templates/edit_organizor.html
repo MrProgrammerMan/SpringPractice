@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Organizor</title>
+</head>
+<body>
+    <h1>Edit Organizor</h1>
+
+    <form th:action="@{'/organizors/' + ${organizor.id} + '/update'}" method="post">
+        <div>
+            <label for="id">ID:</label>
+            <input type="text" id="id" th:value="${organizor.id}" readonly />
+        </div>
+
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" th:value="${organizor.name}" required />
+        </div>
+
+        <div>
+            <label for="orgNum">Organization Number:</label>
+            <input type="text" id="orgNum" name="orgNum" th:value="${organizor.orgNum}" required />
+        </div>
+
+        <div>
+            <button type="submit">Save Changes</button>
+        </div>
+    </form>
+
+    <div>
+        <a href="/organizors">Back to list</a>
+    </div>
+</body>
+</html>
