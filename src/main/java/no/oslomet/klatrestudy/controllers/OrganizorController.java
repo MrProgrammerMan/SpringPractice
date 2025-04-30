@@ -30,4 +30,10 @@ public class OrganizorController {
         model.addAttribute("organizors", organizors);
         return "organizors"; // This should return the name of the view (e.g., "organizors.html")
     }
+
+    @PostMapping("/organizors/{id}/delete")
+    public String deleteOrganizor(@PathVariable Long id) {
+        organizorService.deleteOrganizor(id);
+        return "redirect:/organizors";
+    }
 }
