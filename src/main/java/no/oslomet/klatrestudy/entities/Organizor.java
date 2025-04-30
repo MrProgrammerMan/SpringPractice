@@ -18,6 +18,14 @@ public class Organizor {
     @Column(name = "org_num", nullable = false)
     private int orgNum;
 
+    // Default constructor
+    public Organizor() {}
+    
+    public Organizor(String name, int orgNum) {
+        this.name = name;
+        this.orgNum = orgNum;
+    }
+
     // Getters & Setters
     public Long getId() { return id; }
     public String getName() { return name; }
