@@ -20,7 +20,11 @@ It uses Thymeleaf for rendering pages, PostgreSQL for persistence, and includes 
    ```bash
    sudo docker compose up -d
    ```
-3. Run the project using Maven:
+3. Run the flyway migrations (sets up tables) with:
+   ```bash
+   mvn flyway:migrate
+   ```
+4. Run the project using Maven:
    ```bash
    mvn spring-boot:run
    ```
