@@ -2,6 +2,7 @@ package no.oslomet.klatrestudy.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,7 +33,7 @@ public class OrganizorController {
         return "organizors"; // This should return the name of the view (e.g., "organizors.html")
     }
 
-    @PostMapping("/organizors/{id}/delete")
+    @DeleteMapping("/organizors/{id}/delete")
     public String deleteOrganizor(@PathVariable Long id) {
         organizorService.delete(id);
         return "redirect:/organizors";
