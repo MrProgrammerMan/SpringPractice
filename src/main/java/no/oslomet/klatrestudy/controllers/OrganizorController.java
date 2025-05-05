@@ -21,33 +21,33 @@ public class OrganizorController {
 
     @PostMapping("/organizors")
     public String createOrganizor(Organizor organizor) {
-        organizorService.createOrganizor(organizor);
+        organizorService.create(organizor);
         return "redirect:/organizors";
     }
 
     @GetMapping("/organizors")
     public String showOrganizors(Model model) {
-        List<Organizor> organizors = organizorService.getAllOrganizors();
+        List<Organizor> organizors = organizorService.getAll();
         model.addAttribute("organizors", organizors);
         return "organizors"; // This should return the name of the view (e.g., "organizors.html")
     }
 
     @PostMapping("/organizors/{id}/delete")
     public String deleteOrganizor(@PathVariable Long id) {
-        organizorService.deleteOrganizor(id);
+        organizorService.delete(id);
         return "redirect:/organizors";
     }
 
     @GetMapping("/organizors/{id}/edit")
     public String editOrganizor(@PathVariable Long id, Model model) {
-        Organizor organizor = organizorService.getOrganizorById(id).orElse(null);
+        Organizor organizor = organizorService.getById(id).orElse(null);
         model.addAttribute("organizor", organizor);
         return "edit_organizor"; // This should return the name of the view (e.g., "edit_organizor.html")
     }
 
     @PutMapping("/organizors/{id}/update")
     public String updateOrganizor(@PathVariable Long id, Organizor organizor) {
-        organizorService.updateOrganizor(id, organizor);
+        organizorService.update(id, organizor);
         return "redirect:/organizors";
     }
 }

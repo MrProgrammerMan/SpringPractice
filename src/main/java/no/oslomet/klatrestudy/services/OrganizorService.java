@@ -19,21 +19,21 @@ public class OrganizorService {
 
     // Create
     @Transactional
-    public Organizor createOrganizor(Organizor organizor) {
+    public Organizor create(Organizor organizor) {
         return repo.save(organizor);
     }
 
     // Read
-    public Optional<Organizor> getOrganizorById(Long id) {
+    public Optional<Organizor> getById(Long id) {
         return repo.findById(id);
     }
-    public List<Organizor> getAllOrganizors() {
+    public List<Organizor> getAll() {
         return repo.findAll();
     }
 
     // Update
     @Transactional
-    public Optional<Organizor> updateOrganizor(Long id, Organizor organizor) {
+    public Optional<Organizor> update(Long id, Organizor organizor) {
         if (repo.existsById(id)) {
             organizor.setId(id);
             return Optional.of(repo.save(organizor));
@@ -43,7 +43,7 @@ public class OrganizorService {
 
     // Delete
     @Transactional
-    public boolean deleteOrganizor(Long id) {
+    public boolean delete(Long id) {
         if (repo.existsById(id)) {
             repo.deleteById(id);
             return true;

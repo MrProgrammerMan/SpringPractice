@@ -31,7 +31,7 @@ class OrganizorServiceTest {
 
         when(repo.save(input)).thenReturn(saved);
 
-        Organizor result = service.createOrganizor(input);
+        Organizor result = service.create(input);
 
         assertEquals(1L, result.getId());
         verify(repo).save(input);
@@ -43,7 +43,7 @@ class OrganizorServiceTest {
         organizor.setId(1L);
         when(repo.findById(1L)).thenReturn(Optional.of(organizor));
 
-        Optional<Organizor> result = service.getOrganizorById(1L);
+        Optional<Organizor> result = service.getById(1L);
 
         assertTrue(result.isPresent());
         assertEquals(1L, result.get().getId());
@@ -55,7 +55,7 @@ class OrganizorServiceTest {
         Organizor o2 = new Organizor();
         when(repo.findAll()).thenReturn(List.of(o1, o2));
 
-        List<Organizor> result = service.getAllOrganizors();
+        List<Organizor> result = service.getAll();
 
         assertEquals(2, result.size());
         verify(repo).findAll();
@@ -70,7 +70,7 @@ class OrganizorServiceTest {
         when(repo.existsById(2L)).thenReturn(true);
         when(repo.save(any())).thenReturn(updated);
 
-        Optional<Organizor> result = service.updateOrganizor(2L, input);
+        Optional<Organizor> result = service.update(2L, input);
 
         assertTrue(result.isPresent());
         assertEquals(2L, result.get().getId());
@@ -84,7 +84,7 @@ class OrganizorServiceTest {
     void updateOrganizor_nonExistingId_returnsEmpty() {
         when(repo.existsById(99L)).thenReturn(false);
 
-        Optional<Organizor> result = service.updateOrganizor(99L, new Organizor());
+        Optional<Organizor> result = service.update(99L, new Organizor());
 
         assertTrue(result.isEmpty());
         verify(repo, never()).save(any());
@@ -94,7 +94,7 @@ class OrganizorServiceTest {
     void deleteOrganizor_existingId_deletesAndReturnsTrue() {
         when(repo.existsById(3L)).thenReturn(true);
 
-        boolean result = service.deleteOrganizor(3L);
+        boolean result = service.delete(3L);
 
         assertTrue(result);
         verify(repo).deleteById(3L);
@@ -104,7 +104,7 @@ class OrganizorServiceTest {
     void deleteOrganizor_nonExistingId_returnsFalse() {
         when(repo.existsById(404L)).thenReturn(false);
 
-        boolean result = service.deleteOrganizor(404L);
+        boolean result = service.delete(404L);
 
         assertFalse(result);
         verify(repo, never()).deleteById(any());
